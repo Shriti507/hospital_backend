@@ -1,4 +1,4 @@
-import mongoose,{Schema} from "mongoose";
+import mongoose,{Schema,model} from "mongoose";
 import { Patient,PatientDocument } from "../utils/patient.interface";
 
 
@@ -30,3 +30,4 @@ const patientSchema=new Schema<PatientDocument>({
     }
 })
 
+export  const patientModel=model<PatientDocument>('Patient',patientSchema)

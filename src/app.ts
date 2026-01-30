@@ -1,6 +1,8 @@
 //main application , what the app is , all the work like creating objects,connecting class together etc
 import express from "express";
 import mongoose from "mongoose";
+
+
 interface App_interface{
     startServer():void;
     connectDatabase():void;
@@ -28,7 +30,8 @@ export default class App implements App_interface {
 
     private async connectDatabase(): Promise<void> {
         try {
-            await mongoose.connect("mongodbUrl");
+            const uri: string = process.env.MONGODB_URI || (()=>{ throw new Error("MONGODB_URI is not defined"); })();
+            await mongoose.connect(uri);
             console.log('server has been connected to the database.');
         } catch (err) {
             console.log(err);
