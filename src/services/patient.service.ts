@@ -1,8 +1,8 @@
 import { patientModel } from "../models/patient.schema";
 import { Patient, PatientDocument } from "../utils/patient.interface";
 export class PatientService{
-    async getDetails(){
-        return await patientModel.find()
+    async getDetails(id:string){
+        return await patientModel.findById(id)
 
     }
     async createPatient(patientData:Patient):Promise<PatientDocument>{
