@@ -8,34 +8,34 @@ interface App_interface{
      
 }
 
-export default class App implements App_interface{
-    public PORT:number;
-    public app:express.Application;
+export default class App implements App_interface {
+    public PORT: number;
+    public app: express.Application;
 
-    constructor(){
-        this.PORT=3000;
-        this.app=express();
+    constructor() {
+        this.PORT = 3000;
+        this.app = express();
         this.startServer();
         this.connectDatabase();
         this.initializeRoutes();
     }
 
     public startServer(): void {
-        this.app.listen(this.PORT,()=>{
-            console.log("server started.")
-        })
-    };
+        this.app.listen(this.PORT, () => {
+            console.log("server started.");
+        });
+    }
+
     private async connectDatabase(): Promise<void> {
-        try{
+        try {
             await mongoose.connect("mongodbUrl");
             console.log('server has been connected to the database.');
-        }
-        catch(err){
+        } catch (err) {
             console.log(err);
         }
-    };
-    private initializeRoutes(): void {
-        console.log('routes has been initialized.')
-    };
+    }
 
+    private initializeRoutes(): void {
+        console.log('routes has been initialized.');
+    }
 }
