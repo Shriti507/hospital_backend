@@ -1,6 +1,7 @@
 //main application , what the app is , all the work like creating objects,connecting class together etc
 import express from "express";
 import mongoose from "mongoose";
+import PatientRoutes from "./routes/patient.routes";
 
 
 interface App_interface{
@@ -17,6 +18,7 @@ export default class App implements App_interface {
     constructor() {
         this.PORT = 3000;
         this.app = express();
+        this.app.use(express.json());
         this.startServer();
         this.connectDatabase();
         this.initializeRoutes();
@@ -39,6 +41,14 @@ export default class App implements App_interface {
     }
 
     private initializeRoutes(): void {
+        
+        const patientRoutes = new PatientRoutes();
+        
+        // Register patient routes
+        this.app.use("/", patientRoutes.router);
         console.log('routes has been initialized.');
+            
+      
+        
     }
 }
