@@ -1,4 +1,4 @@
-import {Document,Model} from "mongoose";
+import {Document} from "mongoose";
 export interface Patient {
     firstName: string;
     lastName: string;
@@ -9,4 +9,4 @@ export interface Patient {
 }
 
 export interface PatientDocument extends Document,Patient{}
-  
+   

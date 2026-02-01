@@ -10,7 +10,7 @@ export class PatientService{
         console.log("patient created.")
         return newPatient
         
-
+ 
 
     }
     async updateDetails(id:string,updateData:Partial<Patient>){

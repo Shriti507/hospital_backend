@@ -2,6 +2,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import PatientRoutes from "./routes/patient.routes";
+import AppointmentRoutes from "./routes/appointment.routes";
 
 
 interface App_interface{
@@ -30,7 +31,7 @@ export default class App implements App_interface {
         });
     }
 
-    private async connectDatabase(): Promise<void> {
+    public async connectDatabase(): Promise<void> {
         try {
             const uri: string = process.env.MONGODB_URI || (()=>{ throw new Error("MONGODB_URI is not defined"); })();
             await mongoose.connect(uri);
@@ -43,9 +44,11 @@ export default class App implements App_interface {
     private initializeRoutes(): void {
         
         const patientRoutes = new PatientRoutes();
-        
-        // Register patient routes
+        const appointmentRoutes = new AppointmentRoutes();
+
+        // Register patient and appointment routes
         this.app.use("/", patientRoutes.router);
+        this.app.use("/", appointmentRoutes.router);
         console.log('routes has been initialized.');
             
       
