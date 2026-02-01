@@ -13,9 +13,9 @@ export default class PatientRoutes {
     private initializeRoutes() {
         
         this.router.get(`${this.path}/:id`, this.patientController.getPatientDetails);
-        // this.router.post(`${this.path}`, this.patientController.createPatient);
-        // this.router.put(`${this.path}/:id`, this.patientController.updatePatient);
-        // this.router.delete(`${this.path}/:id`, this.patientController.deletePatient);
+        this.router.post(`${this.path}`, this.patientController.createPatient);
+        this.router.put(`${this.path}/:id`, this.patientController.updatePatient);
+        this.router.delete(`${this.path}/:id`, this.patientController.deletePatient);
       }
 
 
